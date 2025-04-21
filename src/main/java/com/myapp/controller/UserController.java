@@ -1,6 +1,6 @@
 package com.myapp.controller;
 
-import com.myapp.model.User;
+
 import com.myapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +35,7 @@ public class UserController {
             @RequestParam("name") String name,
             @RequestParam("age") int age,
             @RequestParam(value = "email", required = false) String email) {
-
-        User user = new User();
-        user.setName(name);
-        user.setAge(age);
-        user.setEmail(email);
-        userService.saveUser(user);
-
+        userService.createUser(name, age, email);
         return "redirect:/";
     }
 
@@ -57,14 +51,7 @@ public class UserController {
             @RequestParam("name") String name,
             @RequestParam("age") int age,
             @RequestParam(value = "email", required = false) String email) {
-
-        User user = new User();
-        user.setId(id);
-        user.setName(name);
-        user.setAge(age);
-        user.setEmail(email);
-        userService.updateUser(user);
-
+        userService.updateUser(id, name, age, email);
         return "redirect:/";
     }
 
